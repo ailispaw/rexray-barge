@@ -76,3 +76,8 @@ drwx------    2 999      999           4096 Jun  9 15:00 mysql
 drwx------    2 999      999           4096 Jun  9 15:00 performance_schema
 -rw-rw----    1 999      999          24576 Jun  9 16:04 tc.log
 ```
+
+## Notes
+
+- To dettach the volume from the VM, stop all containers with the volume.
+- You have to stop containers with the volume before `vagrant destoroy`, because the volume has been attached to the VM and it will be removed.
