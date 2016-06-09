@@ -1,6 +1,6 @@
 # REX-Ray on Barge with Vagrant
 
-[REX-Ray](https://github.com/emccode/rexray) allows us to create and attach a VMDK (Virtual Machine Disk) dynamically with [VirtualBox](https://www.virtualbox.org/) as a persistent disk for a container.
+[REX-Ray](https://github.com/emccode/rexray) allows us to create and attach a VMDK (Virtual Machine Disk) dynamically with [VirtualBox](https://www.virtualbox.org/) as a persistent volume for a container.
 
 This shows how to use REX-Ray on [Barge](https://atlas.hashicorp.com/ailispaw/boxes/barge) with [Vagrant](https://www.vagrantup.com/) instantly.
 
