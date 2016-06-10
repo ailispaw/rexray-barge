@@ -79,5 +79,10 @@ drwx------    2 999      999           4096 Jun  9 15:00 performance_schema
 
 ## Notes
 
-- To dettach the volume from the VM, stop all containers with the volume.
-- You have to stop containers with the volume before `vagrant destoroy`, because the volume has been attached to the VM and it will be removed.
+- To dettach the VMDK(volume) from the VM, stop all containers with the volume. It will just dettach the VMDK, not remove from your local disk. See also [Ignore Used Count](http://rexray.readthedocs.io/en/stable/user-guide/config/#ignore-used-count) option.
+
+- `docker volume rm <volume>` will remove the volume from the list of Docker volumes and the VMDK from your local disk as well. You can set [Disable Remove](http://rexray.readthedocs.io/en/stable/user-guide/config/#disable-remove) option to disable it.
+
+- The VMDK(volume) will be removed on `vagrant destoroy` unless you stop containers with the volume in advance of it, because `vagrant destoroy` will remove all attached virtual disks in the VM.
+
+- The VMDK(volume) can be re-used only while VBoxSVC daemon is up. You can see the VMDK in the VirtualBox Media Manager and the volume in the list of Docker volumes. Otherwise VirtualBox will release the VMDK and it won't be re-attached, and you can't use the volume again. H'm.
