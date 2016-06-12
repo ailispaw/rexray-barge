@@ -8,5 +8,5 @@ rexray:
 virtualbox:
   endpoint: http://10.0.2.2:18083
   tls: false
-  volumePath: <HOME>/VirtualBox Volumes
+  volumePath: ~/VirtualBox Volumes
   controllerName: SATA Controller

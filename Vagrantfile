@@ -8,13 +8,36 @@ module VagrantPlugins
   end
 end
 
+require "yaml"
+rexray_config  = YAML.load_file("assets/config.yml")
+volumePath     = File.expand_path "#{rexray_config['virtualbox']['volumePath']}"
+controllerName = "#{rexray_config['virtualbox']['controllerName']}"
+
 Vagrant.configure(2) do |config|
   config.vm.define "rexray"
 
   config.vm.box = "ailispaw/barge"
 
   config.vm.provider :virtualbox do |vb|
-    vb.customize ["storagectl", :id, "--name", "SATA Controller", "--portcount", 30]
+    vb.customize ["storagectl", :id, "--name", "#{controllerName}", "--portcount", 30]
+    Dir["#{volumePath}/*"].each do | file |
+      vb.customize [
+        "storageattach", :id,
+        "--storagectl", "#{controllerName}",
+        "--port", 2,
+        "--device", 0,
+        "--type", "hdd",
+        "--medium", file,
+      ]
+      vb.customize [
+        "storageattach", :id,
+        "--storagectl", "#{controllerName}",
+        "--port", 2,
+        "--device", 0,
+        "--type", "hdd",
+        "--medium", "none",
+      ]
+    end
   end
 
   if Vagrant.has_plugin?("vagrant-triggers") then
@@ -43,7 +66,7 @@ Vagrant.configure(2) do |config|
         tar zxf - -C /opt/bin
 
       # Setup REX-Ray
-      sed -i 's|<HOME>|#{ENV["HOME"]}|g' /tmp/assets/config.yml
+      sed -i 's|volumePath:.*$|volumePath: #{volumePath}|g' /tmp/assets/config.yml
       mkdir -p /etc/rexray
       mv /tmp/assets/config.yml /etc/rexray/config.yml
 
