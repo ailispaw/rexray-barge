@@ -50,6 +50,8 @@ Vagrant.configure(2) do |config|
       # Patch eudev rules in Buildroot to create /dev/disk/by-id/* required by REX-Ray
       mkdir -p /etc/udev/rules.d
       mv /tmp/assets/60-persistent-storage.rules /etc/udev/rules.d/60-persistent-storage.rules
+
+      rm -rf /tmp/assets
     EOT
   end
 
