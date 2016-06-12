@@ -14,7 +14,7 @@ volumePath     = File.expand_path "#{rexray_config['virtualbox']['volumePath']}"
 controllerName = "#{rexray_config['virtualbox']['controllerName']}"
 
 Vagrant.configure(2) do |config|
-  config.vm.define "rexray"
+  config.vm.define "rexray-barge"
 
   config.vm.box = "ailispaw/barge"
 
