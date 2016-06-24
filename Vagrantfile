@@ -8,6 +8,8 @@ module VagrantPlugins
   end
 end
 
+REXRAY_VERSION = "0.3.3"
+
 require "yaml"
 rexray_config  = YAML.load_file("assets/config.yml")
 volumePath     = File.expand_path "#{rexray_config['virtualbox']['volumePath']}"
@@ -62,7 +64,7 @@ Vagrant.configure(2) do |config|
       /etc/init.d/docker restart v1.10.3
 
       # Install REX-Ray
-      wget -qO- https://dl.bintray.com/emccode/rexray/stable/latest/rexray-Linux-x86_64.tar.gz | \
+      wget -qO- https://dl.bintray.com/emccode/rexray/stable/#{REXRAY_VERSION}/rexray-Linux-x86_64-#{REXRAY_VERSION}.tar.gz | \
         tar zxf - -C /opt/bin
 
       # Setup REX-Ray
