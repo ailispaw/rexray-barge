@@ -1,12 +1,16 @@
-rexray:
-  logLevel: warn
-  storageDrivers:
-  - virtualbox
-  volume:
-    mount:
-      preempt: true
-virtualbox:
-  endpoint: http://10.0.2.2:18083
-  tls: false
-  volumePath: ~/VirtualBox Volumes
-  controllerName: SATA Controller
+libstorage:
+  service: virtualbox
+  integration:
+    volume:
+      operations:
+        mount:
+          preempt: true
+  server:
+    services:
+      virtualbox:
+        driver: virtualbox
+        virtualbox:
+          endpoint: http://10.0.2.2:18083
+          tls: false
+          volumePath: ~/VirtualBox Volumes
+          controllerName: SATA Controller

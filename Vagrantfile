@@ -8,12 +8,13 @@ module VagrantPlugins
   end
 end
 
-REXRAY_VERSION = "0.3.3"
+REXRAY_VERSION = "0.4.0"
 
 require "yaml"
 rexray_config  = YAML.load_file("assets/config.yml")
-volumePath     = File.expand_path "#{rexray_config['virtualbox']['volumePath']}"
-controllerName = "#{rexray_config['virtualbox']['controllerName']}"
+vbox_config    = rexray_config['libstorage']['server']['services']['virtualbox']
+volumePath     = File.expand_path "#{vbox_config['virtualbox']['volumePath']}"
+controllerName = "#{vbox_config['virtualbox']['controllerName']}"
 
 Vagrant.configure(2) do |config|
   config.vm.define "rexray-barge"
