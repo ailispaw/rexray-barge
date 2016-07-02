@@ -81,7 +81,7 @@ Vagrant.configure(2) do |config|
 
   config.vm.provision :shell, run: "always" do |sh|
     sh.inline = <<-EOT
-      # Install eudev on every boot, because it's not persistent 
+      # Install eudev on every boot, because it's not persistent
       sudo pkg install eudev
 
       # Restart udev
