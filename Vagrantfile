@@ -20,6 +20,7 @@ Vagrant.configure(2) do |config|
   config.vm.define "rexray-barge"
 
   config.vm.box = "ailispaw/barge"
+  config.vm.box_version = ">= 2.2.1"
 
   config.vm.provider :virtualbox do |vb|
     vb.customize ["storagectl", :id, "--name", "#{controllerName}", "--portcount", 30]
@@ -61,9 +62,6 @@ Vagrant.configure(2) do |config|
 
   config.vm.provision :shell do |sh|
     sh.inline = <<-EOT
-      # Use Docker v1.10.3 for REX-Ray
-      /etc/init.d/docker restart v1.10.3
-
       # Install REX-Ray
       wget -qO- https://dl.bintray.com/emccode/rexray/stable/#{REXRAY_VERSION}/rexray-Linux-x86_64-#{REXRAY_VERSION}.tar.gz | \
         tar zxf - -C /opt/bin
