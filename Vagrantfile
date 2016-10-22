@@ -20,7 +20,7 @@ Vagrant.configure(2) do |config|
   config.vm.define "rexray-barge"
 
   config.vm.box = "ailispaw/barge"
-  config.vm.box_version = ">= 2.2.1"
+  config.vm.box_version = ">= 2.2.1, <= 2.2.4"
 
   config.vm.provider :virtualbox do |vb|
     vb.customize ["storagectl", :id, "--name", "#{controllerName}", "--portcount", 30]
