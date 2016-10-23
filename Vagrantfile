@@ -8,7 +8,7 @@ module VagrantPlugins
   end
 end
 
-REXRAY_VERSION = "0.5.1"
+REXRAY_VERSION = "0.6.0"
 
 require "yaml"
 rexray_config  = YAML.load_file("assets/config.yml")
@@ -81,7 +81,8 @@ Vagrant.configure(2) do |config|
   config.vm.provision :shell, run: "always" do |sh|
     sh.inline = <<-EOT
       # Install eudev on every boot, because it's not persistent
-      sudo pkg install eudev
+      pkg install eudev
+      pkg install dmidecode
 
       # Restart udev
       udevadm control --stop-exec-queue || true
@@ -91,8 +92,8 @@ Vagrant.configure(2) do |config|
       udevadm settle
 
       # Restart rexray
-      rexray stop || true
-      rexray start
+      rexray service stop || true
+      rexray service start
     EOT
   end
 end
