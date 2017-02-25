@@ -8,7 +8,7 @@ module VagrantPlugins
   end
 end
 
-REXRAY_VERSION = "0.7.0"
+REXRAY_VERSION = "0.8.0"
 
 require "yaml"
 rexray_config  = YAML.load_file("assets/config.yml")
