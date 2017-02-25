@@ -64,7 +64,7 @@ Vagrant.configure(2) do |config|
   config.vm.provision :shell do |sh|
     sh.inline = <<-EOT
       # Install REX-Ray
-      wget -qO- https://dl.bintray.com/emccode/rexray/stable/#{REXRAY_VERSION}/rexray-Linux-x86_64-#{REXRAY_VERSION}.tar.gz | \
+      wget -qO- https://emccode.bintray.com/rexray/stable/#{REXRAY_VERSION}/rexray-Linux-x86_64-#{REXRAY_VERSION}.tar.gz | \
         tar zxf - -C /opt/bin
 
       # Setup REX-Ray
