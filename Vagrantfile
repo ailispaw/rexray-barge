@@ -8,7 +8,7 @@ module VagrantPlugins
   end
 end
 
-REXRAY_VERSION = "0.9.2"
+REXRAY_VERSION = "0.10.0"
 
 require "yaml"
 rexray_config  = YAML.load_file("assets/config.yml")
@@ -93,7 +93,7 @@ Vagrant.configure(2) do |config|
 
       # Restart rexray
       rexray service stop || true
-      rexray service start
+      rexray service start &
     EOT
   end
 end
