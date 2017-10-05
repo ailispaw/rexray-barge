@@ -93,7 +93,7 @@ Vagrant.configure(2) do |config|
 
       # Restart rexray
       rexray service stop || true
-      setsid rexray service start >/dev/null &
+      setsid rexray service start &>/dev/null &
     EOT
   end
 end
