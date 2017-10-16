@@ -8,7 +8,7 @@ module VagrantPlugins
   end
 end
 
-REXRAY_VERSION = "0.10.2"
+REXRAY_VERSION = "0.11.0"
 
 require "yaml"
 rexray_config  = YAML.load_file("assets/config.yml")
@@ -75,6 +75,8 @@ Vagrant.configure(2) do |config|
       # Patch eudev rules in Buildroot to create /dev/disk/by-id/* required by REX-Ray
       mkdir -p /etc/udev/rules.d
       mv /tmp/assets/60-persistent-storage.rules /etc/udev/rules.d/60-persistent-storage.rules
+
+      /etc/init.d/docker restart v17.09.0-ce
     EOT
   end
 
