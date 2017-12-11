@@ -76,7 +76,7 @@ Vagrant.configure(2) do |config|
       mkdir -p /etc/udev/rules.d
       mv /tmp/assets/60-persistent-storage.rules /etc/udev/rules.d/60-persistent-storage.rules
 
-      /etc/init.d/docker restart v17.10.0-ce
+      /etc/init.d/docker restart v17.11.0-ce
     EOT
   end
 
