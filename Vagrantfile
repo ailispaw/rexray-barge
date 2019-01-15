@@ -57,6 +57,21 @@ Vagrant.configure(2) do |config|
         sh -c "kill $(cat /tmp/vboxwebsrv.pid) && rm /tmp/vboxwebsrv.pid || true"
       EOT
     end
+  else
+    config.trigger.before [:up, :resume] do |trigger|
+      trigger.info = "Start vboxwebsrv"
+      trigger.run = {
+        inline: "vboxwebsrv -b -H 0.0.0.0 -A null -P /tmp/vboxwebsrv.pid"
+      }
+    end
+    config.trigger.after [:destroy, :suspend, :halt] do |trigger|
+      trigger.info = "Stop vboxwebsrv"
+      trigger.run = {
+        inline: <<-EOT
+          sh -c "kill $(cat /tmp/vboxwebsrv.pid) && rm /tmp/vboxwebsrv.pid || true"
+        EOT
+      }
+    end
   end
 
   config.vm.provision :file, source: "assets", destination: "/tmp/"
